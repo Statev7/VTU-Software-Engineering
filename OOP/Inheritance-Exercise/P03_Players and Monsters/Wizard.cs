@@ -8,7 +8,7 @@
         public Wizard(string name, int level)
            : base(name, level)
         {
-
+           
         }
     }
 }

@@ -3,15 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    public class Motorcycle : Vehicle
+    public class RacecMotocrycle : Motorcycle
     {
-        public Motorcycle(int horsePower, double fuel)
+        public RacecMotocrycle(int horsePower, double fuel)
             : base(horsePower, fuel)
         {
 
         }
-
-        
-
     }
 }

@@ -3,15 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    public class Motorcycle : Vehicle
+    public class RaceMotorcycle : Motorcycle
     {
-        public Motorcycle(int horsePower, double fuel)
+        public RaceMotorcycle(int horsePower, double fuel)
             : base(horsePower, fuel)
         {
-            
+            this.DefaultFuelConsumption = 8;
         }
-
-        
-
     }
 }

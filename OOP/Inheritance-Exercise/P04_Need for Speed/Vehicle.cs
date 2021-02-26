@@ -20,11 +20,11 @@
 
         public double Fuel { get; set; }
 
-        public double DefaultFuelConsumption { get; set; } = 1.25;
+        public double DefaultFuelConsumption { get; set; }
 
-        public double FuelConsumption { get; set; }
+        public virtual double FuelConsumption { get; set; } = 1.25;
 
-        public void Drive(double kilometers)
+        public virtual void Drive(double kilometers)
         {
             double sum = 0;
             double result = 0;

@@ -61,12 +61,12 @@
                 }
                 else if (isValid != Validator.HarvestersEnergyRequirementCheckSystem(value))
                 {
-                    exeption = ErrorMessages.VALUE_OVER_TWENTY_THOUSAND_ENERGY_ERROR_MESSAGE;
+                    exeption = ErrorMessages.VALUE_OVER_TWENTY_THOUSAND_ENERGYREQUIREMENT_ERROR_MESSAGE;
                 }
 
                 if (exeption.Length != 0)
                 {
-                    throw new Exception(exeption);
+                    Console.WriteLine(exeption);
                 }
 
                 energyRequirement = value;

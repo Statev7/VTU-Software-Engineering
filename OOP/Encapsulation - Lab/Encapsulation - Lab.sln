@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01_SortPersonByNameAndAge", "P01_SortPersonByNameAndAge\P01_SortPersonByNameAndAge.csproj", "{C843E5F0-6E0E-422F-B099-D2E2D0A4F3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P01_SortPersonByNameAndAge", "P01_SortPersonByNameAndAge\P01_SortPersonByNameAndAge.csproj", "{C843E5F0-6E0E-422F-B099-D2E2D0A4F3FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P02_SalaryIncrease", "P02_SalaryIncrease\P02_SalaryIncrease.csproj", "{26BF8F4F-6586-40DD-8728-F8AA952335C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P02_SalaryIncrease", "P02_SalaryIncrease\P02_SalaryIncrease.csproj", "{26BF8F4F-6586-40DD-8728-F8AA952335C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P03_ValidationOfDate", "P03_ValidationOfDate\P03_ValidationOfDate.csproj", "{45E26A00-CD77-4C43-9721-8ABA56990DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P04_FirstAndReserveTeam", "P04_FirstAndReserveTeam\P04_FirstAndReserveTeam.csproj", "{992F6402-143B-46BB-92C5-3E4B4934F823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{26BF8F4F-6586-40DD-8728-F8AA952335C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26BF8F4F-6586-40DD-8728-F8AA952335C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26BF8F4F-6586-40DD-8728-F8AA952335C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E26A00-CD77-4C43-9721-8ABA56990DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E26A00-CD77-4C43-9721-8ABA56990DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E26A00-CD77-4C43-9721-8ABA56990DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E26A00-CD77-4C43-9721-8ABA56990DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992F6402-143B-46BB-92C5-3E4B4934F823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992F6402-143B-46BB-92C5-3E4B4934F823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992F6402-143B-46BB-92C5-3E4B4934F823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992F6402-143B-46BB-92C5-3E4B4934F823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

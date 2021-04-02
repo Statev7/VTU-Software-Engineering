@@ -5,8 +5,9 @@
 
     public class Date
     {
-        private const byte MIN_VALUE = 1;
+        private const byte MIN_DAY_VALUE = 1;
         private const byte MAX_DAY_VALUE = 31;
+        private const byte MIN_MONTH_VALUE = 1;
         private const byte MAX_MONTH_VALUE = 12;
         private const int MAX_YEAR_VALUE = int.MaxValue;
         private const string INVALID_DATE_ERROR_MESSAGE = "The date cannot be more than 31 or less than 1";
@@ -34,7 +35,7 @@
             }
             set
             {
-                bool isInvalid = value > MAX_DAY_VALUE || value < MIN_VALUE;
+                bool isInvalid = value > MAX_DAY_VALUE || value < MIN_DAY_VALUE;
 
                 if (isInvalid)
                 {
@@ -53,7 +54,7 @@
             }
             set
             {
-                bool isInvalid = value > MAX_MONTH_VALUE || value < MIN_VALUE;
+                bool isInvalid = value > MAX_MONTH_VALUE || value < MIN_MONTH_VALUE;
 
                 if (isInvalid)
                 {
@@ -72,7 +73,7 @@
             }
             set
             {
-                bool isInvalid = value > MAX_YEAR_VALUE || value < MIN_VALUE;
+                bool isInvalid = value > MAX_YEAR_VALUE || value < MIN_DAY_VALUE;
 
                 if (isInvalid)
                 {
@@ -91,7 +92,7 @@
         {
             bool isLeap = DateTime.IsLeapYear(this.year);
 
-            int daysCount = DaysOfTheMonth(this.month, isLeap);
+            int daysCount = DaysInMounth(this.month, isLeap);
 
             Compatibility(this.day, daysCount);
 
@@ -99,16 +100,53 @@
 
             while (sum > daysCount)
             {
+                if (this.month > MAX_MONTH_VALUE)
+                {
+                    this.year++;
+                    this.month = 0;
+                }
+
                 sum -= daysCount;
 
                 this.month++;
-                daysCount = DaysOfTheMonth(this.month, isLeap);
+                daysCount = DaysInMounth(this.month, isLeap);
             }
 
             this.day = sum;
         }
 
-        private static int DaysOfTheMonth(int month, bool isLeap)
+        public void Remove(int n)
+        {
+            bool isLeap = DateTime.IsLeapYear(this.year);
+
+            int daysCount = DaysInMounth(this.month, isLeap);
+
+            Compatibility(this.day, daysCount);
+
+            int sum = this.day - n;
+
+            if (sum > 0)
+            {
+                this.day = sum;
+            }
+
+            while (sum <= 0)
+            {
+                if (this.month < MIN_MONTH_VALUE)
+                {
+                    this.year--;
+                    this.month = 13;
+                }
+
+                this.month--;
+                daysCount = DaysInMounth(this.month, isLeap);
+                sum = daysCount - Math.Abs(sum);
+                this.day = sum;
+            }
+
+        }
+
+        private static int DaysInMounth(int month, bool isLeap)
         {
             int count = 0;
 

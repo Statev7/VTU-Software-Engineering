@@ -103,7 +103,7 @@
                 if (this.month > MAX_MONTH_VALUE)
                 {
                     this.year++;
-                    this.month = 0;
+                    this.month = MIN_MONTH_VALUE - 1;
                 }
 
                 sum -= daysCount;
@@ -135,7 +135,7 @@
                 if (this.month < MIN_MONTH_VALUE)
                 {
                     this.year--;
-                    this.month = 13;
+                    this.month = MAX_MONTH_VALUE + 1;
                 }
 
                 this.month--;

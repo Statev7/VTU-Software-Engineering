@@ -6,41 +6,41 @@
 
     public struct Date
     {
-        private DateTime day;
+        private DateTime time;
 
-        public DateTime Day
+        public DateTime Time
         {
             get
             {
-                return day;
+                return time;
             }
             set
             {
-                day = value;
+                time = value;
             }
         }
 
         public void AddDays(int n)
         {
-            DateTime result = this.day.AddDays(n);
+            DateTime result = this.time.AddDays(n);
 
-            this.day = result;
+            this.time = result;
         }
 
         public void RemoveDays(int n)
         {
             int subtractionNumber = n * -1;
 
-            DateTime result = this.day.AddDays(subtractionNumber);
+            DateTime result = this.time.AddDays(subtractionNumber);
 
-            this.day = result;
+            this.time = result;
         }
 
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
 
-            str.AppendLine($"{this.Day}");
+            str.AppendLine($"{this.Time}");
 
             return str.ToString();
         }

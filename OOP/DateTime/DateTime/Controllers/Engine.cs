@@ -7,7 +7,18 @@
         public static void Run()
         {
             Console.Write("Въведете дата в следния формат: ден/месец/година: ");
-            DateTime input = DateTime.Parse(Console.ReadLine());
+
+            DateTime input;
+
+            try
+            {
+                input = DateTime.Parse(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+
+                throw new Exception($"Invalid input!");
+            }
 
             Date date = new Date { Time = input };
 

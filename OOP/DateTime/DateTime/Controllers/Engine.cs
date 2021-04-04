@@ -14,10 +14,10 @@
             {
                 input = DateTime.Parse(Console.ReadLine());
             }
-            catch (Exception)
+            catch (FormatException)
             {
 
-                throw new Exception($"Invalid input!");
+                throw new FormatException($"Invalid input!");
             }
 
             Date date = new Date { Time = input };

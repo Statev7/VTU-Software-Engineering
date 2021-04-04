@@ -9,7 +9,7 @@
             Console.Write("Въведете дата в следния формат: ден/месец/година: ");
             DateTime input = DateTime.Parse(Console.ReadLine());
 
-            Date date = new Date { Day = input };
+            Date date = new Date { Time = input };
 
             Console.Write("Add/Remove {number of days}: ");
             var arguments = Console.ReadLine().Split(' ');
@@ -30,7 +30,7 @@
                         break;
                 }
 
-                Console.WriteLine($"{date.Day}");
+                Console.WriteLine($"{date.Time}");
 
                 Console.Write("Add/Remove {number of days}: ");
                 arguments = Console.ReadLine().Split(' ');

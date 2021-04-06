@@ -8,11 +8,11 @@
     using Models;
     using Factories;
 
-    public class DraftManagercs
+    public class DraftManager
     {
-        public static void CreateAndSavePlanes(List<string> arguments)
+        public static void Create(List<string> arguments)
         {
-            Planes plane = PlaneFactory.Create(arguments);
+            Planes plane = PlaneFactory.CreatePlane(arguments);
             string fileName = "Planes.db";
             StreamWriter stream;
 

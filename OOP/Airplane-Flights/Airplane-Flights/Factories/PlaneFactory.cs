@@ -7,7 +7,7 @@
 
     public class PlaneFactory
     {
-        public static Planes Create(List<string> arguments)
+        public static Planes CreatePlane(List<string> arguments)
         {
             Planes planes = null;
 

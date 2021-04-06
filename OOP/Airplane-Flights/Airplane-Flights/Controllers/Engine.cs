@@ -20,10 +20,10 @@
                 switch (commnad)
                 {
                     case "create":
-                        DraftManagercs.CreateAndSavePlanes(arguments);
+                        DraftManager.Create(arguments);
                         break;
                     case "search":
-                        DraftManagercs.Search(arguments[0]);
+                        DraftManager.Search(arguments[0]);
                         break;
                 }
 

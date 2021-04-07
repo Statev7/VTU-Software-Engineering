@@ -1,9 +1,9 @@
 ﻿namespace Airplane_Flights.Controllers
 {
-
     using System;
-
     using System.Linq;
+
+    using Airplane_Flights.Models;
 
     public class Engine
     {
@@ -20,10 +20,10 @@
                 switch (commnad)
                 {
                     case "create":
-                        DraftManager.Create(arguments);
+                        Planes.Create(arguments);
                         break;
                     case "search":
-                        DraftManager.Search(arguments[0]);
+                        Planes.Search(arguments[0]);
                         break;
                 }
 

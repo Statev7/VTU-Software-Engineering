@@ -2,6 +2,9 @@
 {
     public class GoldCard : BaseModel
     {
+        private const double INITIAL_PERCENTAGE = 0.02;
+        private const double MAX_PERCENTAGE = 0.1;
+
         public GoldCard(double turnover, double discount)
            : base(turnover, discount)
         {
@@ -10,18 +13,18 @@
 
         public override double DiscountProcent(double purchase)
         {
-            double discount = 0.02;
+            double procentDiscount = INITIAL_PERCENTAGE;
 
             if (base.Turnover > 800)
             {
-                discount = purchase * 0.1;
+                procentDiscount = MAX_PERCENTAGE;
             }
             else
             {
-                discount = discount + base.Turnover / 1000;
+                procentDiscount = procentDiscount + base.Turnover / 1000;
             }
             
-            return base.DiscountProcent(discount);
+            return base.DiscountProcent(procentDiscount);
         }
     }
 }

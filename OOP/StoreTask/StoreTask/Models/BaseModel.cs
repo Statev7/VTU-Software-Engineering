@@ -39,9 +39,9 @@
             }
         }
 
-        public virtual double DiscountProcent(double discount)
+        public virtual double DiscountProcent(double procentDiscount)
         {
-            return discount;
+            return procentDiscount;
         }
 
     }

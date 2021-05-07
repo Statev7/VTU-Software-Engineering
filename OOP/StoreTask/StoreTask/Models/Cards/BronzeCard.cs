@@ -3,6 +3,9 @@
 
     public class BronzeCard : BaseModel
     {
+        private const double INITIAL_PERCENTAGE = 0;
+        private const double PERCENTAGE_BETWEEN_ONE_HUNDRED_AND_THREE_HUNDRED_TURNOVER = 0.01;
+        private const double PERCENTAGE_OVER_THREE_HUNDRED_TURNOVER = 0.025;
 
         public BronzeCard(double turnover, double discount)
             :base(turnover, discount)
@@ -12,18 +15,18 @@
 
         public override double DiscountProcent(double purchase)
         {
-            double discount = 0;
+            double procentDiscount = INITIAL_PERCENTAGE;
 
-            if (base.Turnover >= 100 || base.Turnover <= 300)
+            if (base.Turnover >= 100 && base.Turnover <= 300)
             {
-                discount = Turnover * 0.01;
+                procentDiscount = PERCENTAGE_BETWEEN_ONE_HUNDRED_AND_THREE_HUNDRED_TURNOVER;
             }
             else if (base.Turnover > 300)
             {
-                discount = Turnover * 0.025;
+                procentDiscount = PERCENTAGE_OVER_THREE_HUNDRED_TURNOVER;
             }
 
-            return base.DiscountProcent(discount);  
+            return base.DiscountProcent(procentDiscount);  
         }
     }
 }

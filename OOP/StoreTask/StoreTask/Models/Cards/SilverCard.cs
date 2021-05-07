@@ -4,7 +4,9 @@
 
     class SilverCard : BaseModel
     {
-      
+        private const double INITIAL_PERCENTAGE = 0.02;
+        private const double PERCENTAGE_OVER_THREE_HUNDRED_TURNOVER = 0.035;
+
         public SilverCard(double turnover, double discount)
             : base(turnover, discount)
         {
@@ -13,18 +15,14 @@
 
         public override double DiscountProcent(double purchase)
         {
-            double discount = 0;
+            double procentDiscount = INITIAL_PERCENTAGE;
 
-            if (base.Turnover <= 300)
+            if (base.Turnover > 300)
             {
-                discount = purchase * 0.02;
-            }
-            else
-            {
-                discount = purchase * 0.035;
+                procentDiscount = PERCENTAGE_OVER_THREE_HUNDRED_TURNOVER;
             }
 
-            return base.DiscountProcent(discount);
+            return base.DiscountProcent(procentDiscount);
         }
 
 

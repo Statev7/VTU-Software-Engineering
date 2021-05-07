@@ -8,17 +8,18 @@
 
     public class PayDesk
     {
-
         public static void PrintResult(BaseModel model, double purchase)
         {
-            double totalSum = purchase - model.Discount;
+            double discount = purchase * model.Discount;
+            double totalSum = purchase - (purchase * model.Discount);
+            
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine($"Discount value: {purchase:F2}");
-            stringBuilder.AppendLine($"Discount rate: ");
-            stringBuilder.AppendLine($"Discount {model.Discount:F2}");
-            stringBuilder.AppendLine($"Total: {totalSum:F2}");
+            stringBuilder.AppendLine($"Purchase value: ${purchase:F2}");
+            stringBuilder.AppendLine($"Discount rate: {model.Discount * 100:F1}%");
+            stringBuilder.AppendLine($"Discount ${discount:F2}");
+            stringBuilder.AppendLine($"Total: ${totalSum:F2}");
 
             Console.WriteLine(stringBuilder.ToString());
         }

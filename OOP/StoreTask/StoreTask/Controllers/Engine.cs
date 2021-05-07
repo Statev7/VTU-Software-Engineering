@@ -14,22 +14,22 @@
         {
             var arguments = Console.ReadLine().Split(' ').ToList();
 
-            string card = arguments[0];
+            string card = arguments[1];
 
             BaseModel baseModel = null;
 
-            double turnover = double.Parse(arguments[4]);
-            double purchase = double.Parse(arguments[7]);
+            double turnover = double.Parse(arguments[2]);
+            double purchase = double.Parse(arguments[3]);
 
             switch (card)
             {
-                case "Bronze:":
+                case "Bronze":
                     baseModel = new BronzeCard(turnover, purchase);
                     break;
-                case "Silver:":
+                case "Silver":
                     baseModel = new SilverCard(turnover, purchase);
                     break;
-                case "Gold:":
+                case "Gold":
                     baseModel = new GoldCard(turnover, purchase);
                     break;
             }

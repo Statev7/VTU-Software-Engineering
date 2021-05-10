@@ -22,7 +22,7 @@
                 procentDiscount = PERCENTAGE_OVER_THREE_HUNDRED_TURNOVER;
             }
 
-            return base.DiscountProcent(procentDiscount);
+            return procentDiscount;
         }
 
 

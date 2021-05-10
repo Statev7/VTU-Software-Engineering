@@ -24,7 +24,7 @@
                 procentDiscount = procentDiscount + base.Turnover / 1000;
             }
             
-            return base.DiscountProcent(procentDiscount);
+            return procentDiscount;
         }
     }
 }

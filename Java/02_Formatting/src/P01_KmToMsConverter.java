@@ -7,7 +7,7 @@ public class P01_KmToMsConverter {
 
         for (int i = 20; i < 200; i+=10) {
 
-            double sum = i / 3.6;
+            double sum = i / MULTIPLIER;
 
             String result = String.format("%3d..........%.2f", i, sum);
             System.out.println(result);

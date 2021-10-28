@@ -6,8 +6,10 @@
 
     public class Casino : ICasino
     {
-        private const int MIN_VALUE = 1;
-        private const int MAX_VALUE = 4;
+        private const int MIN_PILE_VALUE = 1;
+        private const int MAX_PILE_VALUE = 4;
+        private const int MIN_CARD_POSITION = 0;
+        private const int MAX_CARD_POSITION = 3;
 
         private int[] firstPileOfCards;
         private int[] secondPileOfCards;
@@ -29,25 +31,25 @@
 
             for (int i = 0; i < gamesCount; i++)
             {
-                int firstPlayerPile = this.random.Next(MIN_VALUE, MAX_VALUE);
+                int firstPlayerPile = this.random.Next(MIN_PILE_VALUE, MAX_PILE_VALUE);
 
-                int firstPlayerCard = this.random.Next(MIN_VALUE, MAX_VALUE) - 1;
-                int secondPlayerCard = this.random.Next(MIN_VALUE, MAX_VALUE) - 1;
+                int firstPlayerCardPosition = this.random.Next(MIN_CARD_POSITION, MAX_CARD_POSITION);
+                int secondPlayerCardPosition = this.random.Next(MIN_CARD_POSITION, MAX_CARD_POSITION);
 
                 if (firstPlayerPile == 1)
                 {
-                    firstPlayer.CurruntCard = firstPileOfCards[firstPlayerCard];
-                    seconPlayer.CurruntCard = secondPileOfCards[secondPlayerCard];
+                    firstPlayer.CurruntCard = firstPileOfCards[firstPlayerCardPosition];
+                    seconPlayer.CurruntCard = secondPileOfCards[secondPlayerCardPosition];
                 }
                 else if (firstPlayerPile == 2)
                 {
-                    firstPlayer.CurruntCard = secondPileOfCards[firstPlayerCard];
-                    seconPlayer.CurruntCard = thirdPileOfCards[secondPlayerCard];
+                    firstPlayer.CurruntCard = secondPileOfCards[firstPlayerCardPosition];
+                    seconPlayer.CurruntCard = thirdPileOfCards[secondPlayerCardPosition];
                 }
                 else if(firstPlayerPile == 3)
                 {
-                    firstPlayer.CurruntCard = thirdPileOfCards[firstPlayerCard];
-                    seconPlayer.CurruntCard = firstPileOfCards[secondPlayerCard];
+                    firstPlayer.CurruntCard = thirdPileOfCards[firstPlayerCardPosition];
+                    seconPlayer.CurruntCard = firstPileOfCards[secondPlayerCardPosition];
                 }
 
                 if (firstPlayer.CurruntCard < seconPlayer.CurruntCard)

@@ -1,15 +1,16 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class WordCounter {
 
-    public int count(String text, String wordToCount){
+    public int count(String text, String word){
 
-        String[] textAsArray = text.split(" ");
+        Pattern pattern = Pattern.compile(word);
+        Matcher matcher = pattern.matcher(text);
+
         int count = 0;
-
-        for (int i = 0; i < textAsArray.length; i++) {
-
-            if (textAsArray[i].equals(wordToCount)){
-                count++;
-            }
+        while (matcher.find()){
+            count++;
         }
 
         return count;

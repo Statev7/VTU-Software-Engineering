@@ -1,0 +1,1 @@
+temperature [44.0, 44.0, 44.0]atmospheric [949.0, 953.0, 966.0]humidity [45.0, 45.0, 45.0]

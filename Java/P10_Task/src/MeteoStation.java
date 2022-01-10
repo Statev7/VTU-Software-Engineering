@@ -46,7 +46,8 @@ public class MeteoStation {
 
             if (sensors.get(index).getName().equalsIgnoreCase(name)){
 
-                sensors.get(index).getValues().sort(Float::compareTo);
+                Sensor sensor = sensors.get(index);
+                Collections.sort(sensor.getValues(), Collections.reverseOrder());
                 break;
             }
         }

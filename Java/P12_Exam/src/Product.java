@@ -1,6 +1,6 @@
-public interface Product extends Comparable {
+public interface Product extends Comparable<Product> {
 
     String getName();
 
-    Double getPrice(double price);
+    Double getPrice();
 }

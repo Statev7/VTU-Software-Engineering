@@ -42,16 +42,15 @@ public class SmartPhone implements Product{
     }
 
     @Override
-    public Double getPrice(double price) {
+    public Double getPrice() {
         return this.price;
     }
 
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Product o) {
 
-        SmartPhone other = (SmartPhone)o;
-        return this.price.compareTo(other.price);
+        return this.getPrice().compareTo(o.getPrice());
     }
 
     @Override

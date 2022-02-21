@@ -6,10 +6,12 @@
     {
         public Vehicle Vehicle { get; set; }
 
-        public abstract void BuildFrame(string frame);
+        public abstract VehicleBuilder BuildFrame(string frame);
 
-        public abstract void BuildColor(string color);
+        public abstract VehicleBuilder BuildColor(string color);
 
-        public abstract void BuildWheels(int wheels);
+        public abstract VehicleBuilder BuildWheels(int wheels);
+
+        public abstract Vehicle Build();
     }
 }

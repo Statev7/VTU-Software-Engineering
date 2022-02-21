@@ -4,6 +4,7 @@
 
     using P02_Builder.Builders;
     using P02_Builder.Directors;
+    using P02_Builder.Models;
 
     public class StartUp
     {
@@ -13,9 +14,13 @@
             VehicleBuilder carBuilder = new CarBuilder();
 
             vehicleConstructor.Construct(carBuilder);
-            carBuilder.BuildColor("White");
-            carBuilder.BuildFrame("Something");
-            carBuilder.BuildWheels(4);
+
+            Vehicle car = new CarBuilder()
+                .BuildColor("red")
+                .BuildFrame("Something")
+                .Build();
+
+            Console.WriteLine(car.Color);
 
             string carResult = carBuilder.Vehicle.Show();
             Console.WriteLine(carResult);

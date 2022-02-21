@@ -9,19 +9,27 @@
             this.Vehicle = new Bus();
         }
 
-        public override void BuildFrame(string frame)
+        public override VehicleBuilder BuildFrame(string frame)
         {
             this.Vehicle.Frame = frame;
+            return this;
         }
 
-        public override void BuildWheels(int wheels)
+        public override VehicleBuilder BuildWheels(int wheels)
         {
             this.Vehicle.NumberOfWheels = wheels;
+            return this;
         }
 
-        public override void BuildColor(string color)
+        public override VehicleBuilder BuildColor(string color)
         {
             this.Vehicle.Color = color;
+            return this;
+        }
+
+        public override Vehicle Build()
+        {
+            return this.Vehicle;
         }
     }
 }

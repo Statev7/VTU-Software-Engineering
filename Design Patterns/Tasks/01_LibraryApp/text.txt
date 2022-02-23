@@ -1,0 +1,4 @@
+Successfully registered Manga with name: Naruto
+Successfully registered Comic with name: OnePiece
+Type: Manga, Name: Naruto, Genre: idk, Author: Pesho
+Type: Comic, Name: OnePiece, Genre: idk

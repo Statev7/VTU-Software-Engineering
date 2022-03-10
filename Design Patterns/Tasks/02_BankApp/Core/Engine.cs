@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Threading;
 
     using _02_BankApp.Core.Contracts;
     using _02_BankApp.Implementation.Models;
@@ -15,8 +14,8 @@
         private const string COMMAND_SUFFIX = "_command";
 
         private const string COMMAND_TO_END_READ = "end" + COMMAND_SUFFIX;
-        private const string REGISTER_CLIENT = "register client" + COMMAND_SUFFIX;
-        private const string DRAW_LOAN = "draw loan" + COMMAND_SUFFIX;
+        private const string REGISTER_CLIENT = "registerclient" + COMMAND_SUFFIX;
+        private const string DRAW_LOAN = "drawloan" + COMMAND_SUFFIX;
         private const string DEPOSIT_MONEY = "deposit" + COMMAND_SUFFIX;
         private const string CLIENT_INFORMATION = "information" + COMMAND_SUFFIX;
 
@@ -50,20 +49,27 @@
                 }
 
                 string message = string.Empty;
-                switch (command)
+                try
                 {
-                    case REGISTER_CLIENT:
-                        message = bankService.RegisterClient(arguments.ToArray());
-                        break;
-                    case DRAW_LOAN:
-                        message = bankService.DrawLoan(arguments[0], decimal.Parse(arguments[1]));
-                        break;
-                    case DEPOSIT_MONEY:
-                        message = bankService.DepositMoney(arguments[0], decimal.Parse(arguments[1]));
-                        break;
-                    case CLIENT_INFORMATION:
-                        message = bankService.PrintInformationAboutClient(arguments[0]);
-                        break;
+                    switch (command)
+                    {
+                        case REGISTER_CLIENT:
+                            message = bankService.RegisterClient(arguments.ToArray());
+                            break;
+                        case DRAW_LOAN:
+                            message = bankService.DrawLoan(arguments[0], decimal.Parse(arguments[1]));
+                            break;
+                        case DEPOSIT_MONEY:
+                            message = bankService.DepositMoney(arguments[0], decimal.Parse(arguments[1]));
+                            break;
+                        case CLIENT_INFORMATION:
+                            message = bankService.PrintInformationAboutClient(arguments[0]);
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    this.writer.WriteLine(e.Message);
                 }
 
                 if (message.Length != 0)

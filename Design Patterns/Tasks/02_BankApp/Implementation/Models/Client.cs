@@ -8,11 +8,14 @@
     using _02_BankApp.Implementation.Models.Abstraction;
     using _02_BankApp.Infrastructure.Helpers;
     using _02_BankApp.Utilities.Constants.Models;
+    using _02_BankApp.Utilities.Messages;
 
     public class Client : BaseModel, IClient
     {
-        private readonly ICollection<Loan> loans;
         private string firstName;
+        private string lastName;
+        private string identificationNumber;
+        private readonly ICollection<Loan> loans;
 
         public Client(string firstName, string lastName, string IdentificationNumber, BankAccount bankAccount)
             :base()
@@ -29,32 +32,38 @@
             get => this.firstName;
             private set
             {
-                string message = string.Empty;
-
-                bool isNull = CustomValidator.IsNullOrWhiteSpace(value);
-                bool isInvalid = CustomValidator.IsStringLengthLowerTo(value, ClientConstants.FIRST_NAME_MIN_LENGHT);
-
-                if (isNull)
-                {
-                    //TODO throw exception!
-                }
-                else if (isInvalid)
-                {
-
-                }
-
-                if(message.Length != 0)
-                {
-
-                }
+                this.ValidateName(value, ClientConstants.FIRST_NAME_MIN_LENGHT, nameof(this.FirstName));
 
                 this.firstName = value;
             }
         }
 
-        public string LastName { get; private set; }
+        public string LastName
+        {
+            get => this.lastName;
+            private set
+            {
+                this.ValidateName(value, ClientConstants.LAST_NAME_MIN_LENGHT, nameof(this.LastName));
 
-        public string IdentificationNumber { get; private set; }
+                this.lastName = value;
+            }
+        }
+
+        public string IdentificationNumber
+        {
+            get => this.identificationNumber;
+            private set
+            {
+                bool isValid = CustomValidator.IsIdentificationNumberValid(value);
+
+                if (isValid == false)
+                {
+                    throw new ArgumentException(ExceptionMessages.INVALID_IDENTIFICATION_NUMBER);
+                }
+
+                this.identificationNumber = value;
+            }
+        }
 
         public BankAccount BankAccount { get; private set; }
 
@@ -63,6 +72,24 @@
         public void AddLoan(Loan loan)
         {
             this.loans.Add(loan);
+        }
+
+        private void ValidateName(string value, int valueLenght, string nameOf)
+        {
+            bool isNull = CustomValidator.IsNullOrWhiteSpace(value);
+            bool isInvalid = CustomValidator.IsStringLengthLowerTo(value, valueLenght);
+
+            if (isNull)
+            {
+                string message = string.Format(ExceptionMessages.NULL_NAME_ERROR_MESSAGE, nameOf);
+                throw new ArgumentNullException(message);
+            }
+            else if (isInvalid)
+            {
+                string message =
+                    string.Format(ExceptionMessages.NAME_MIN_LENGHT_ERROR_MESSAGE, nameOf, valueLenght);
+                throw new ArgumentException(message);
+            }
         }
 
         public override string ToString()

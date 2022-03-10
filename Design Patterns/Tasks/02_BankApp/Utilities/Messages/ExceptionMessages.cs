@@ -11,5 +11,11 @@
         public const string BANK_DOES_NOT_HAVE_ENOUGH_MONEY = "The bank does not have enough money";
 
         public const string MIN_LOAD_ERROR_MESSAGE = "The loan cannot be less than {0}$";
+
+        public const string NULL_NAME_ERROR_MESSAGE = "{0} cannot be null or whitespace!";
+
+        public const string NAME_MIN_LENGHT_ERROR_MESSAGE = "{0} cannot contain fewer than {1} symbols!";
+
+        public const string INVALID_IDENTIFICATION_NUMBER = "The identification number is invalid!";
     }
 }

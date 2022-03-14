@@ -2,8 +2,10 @@
 {
     public static class BankConstants
     {
-        public const decimal MINUMUM_AMOUNT_DEPOSIT = 5;
+        public const decimal MINIMUM_AMOUNT_DEPOSIT = 5;
 
-        public const decimal MINUMUM_LOAN = 1000;
+        public const decimal MINIMUM_AMOUNT_DRAW = 10;
+
+        public const decimal MINIMUM_LOAN = 1000;
     }
 }

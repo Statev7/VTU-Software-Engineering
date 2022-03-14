@@ -31,7 +31,7 @@
             string lastName = arguments[1];
             string identificationNumber = arguments[2];
 
-            bool isClientAlreadyExist = this.FindClientByIdentificationNumber(identificationNumber) != null;
+            bool isClientAlreadyExist = this.bank.FindClientByIdentificationNumber(identificationNumber) != null;
             if (isClientAlreadyExist)
             {
                 string errorMessage = 
@@ -54,13 +54,13 @@
 
         public string DepositMoney(string identificationNumber, decimal amount)
         {
-            IClient client = this.FindClientByIdentificationNumber(identificationNumber);
+            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
-            if (amount < BankConstants.MINUMUM_AMOUNT_DEPOSIT)
+            if (amount < BankConstants.MINIMUM_AMOUNT_DEPOSIT)
             {
                 string message =
-                    string.Format(ExceptionMessages.MIN_DEPOSIT_AMOUT_ERROR_MESSAGE, BankConstants.MINUMUM_AMOUNT_DEPOSIT);
+                    string.Format(ExceptionMessages.MIN_DEPOSIT_AMOUT_ERROR_MESSAGE, BankConstants.MINIMUM_AMOUNT_DEPOSIT);
                 throw new ArgumentException(message);
             }
 
@@ -71,9 +71,28 @@
             return result;
         }
 
+        public string DrawMoney(string identificationNumber, decimal amount)
+        {
+            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
+            this.IsClienValid(client);
+
+            if (amount < BankConstants.MINIMUM_AMOUNT_DRAW)
+            {
+                string message =
+                    string.Format(ExceptionMessages.MIN_DRAW_AMOUT_ERROR_MESSAGE, BankConstants.MINIMUM_AMOUNT_DRAW);
+                throw new ArgumentException(message);
+            }
+
+            client.BankAccount.DrawMoney(amount);
+            string result =
+                string.Format(OutputMessages.SUCCESSFULY_DRAWN_MONEY, amount, client.BankAccount.Balance);
+
+            return result;
+        }
+
         public string DrawLoan(string identificationNumber, decimal loanAmount)
         {
-            IClient client = this.FindClientByIdentificationNumber(identificationNumber);
+            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             if (loanAmount > this.bank.Balance)
@@ -81,14 +100,13 @@
                 throw new Exception(ExceptionMessages.BANK_DOES_NOT_HAVE_ENOUGH_MONEY);
             }
 
-            if (loanAmount < BankConstants.MINUMUM_LOAN)
+            if (loanAmount < BankConstants.MINIMUM_LOAN)
             {
-                string message = string.Format(ExceptionMessages.MIN_LOAD_ERROR_MESSAGE, BankConstants.MINUMUM_LOAN);
+                string message = string.Format(ExceptionMessages.MIN_LOAD_ERROR_MESSAGE, BankConstants.MINIMUM_LOAN);
                 throw new Exception(message);
             }
 
-            decimal loanResult = CalculateLoan(client, loanAmount);
-            this.bank.DrawLoan(loanResult);
+            decimal loanResult = this.bank.DrawLoan(client, loanAmount);
 
             Loan loan = new Loan(DateTime.UtcNow, loanResult);
             client.AddLoan(loan);
@@ -99,7 +117,7 @@
 
         public string PrintInformationAboutClient(string identificationNumber)
         {
-            IClient client = this.FindClientByIdentificationNumber(identificationNumber);
+            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             string result = client.ToString();
@@ -107,40 +125,9 @@
             return result;
         }
 
-        private decimal CalculateLoan(IClient client, decimal loanAmount)
-        {
-            double rate = 0;
-
-            switch (client.BankAccount.Type)
-            {
-                case Enumerators.AccountType.Regular:
-                    rate = LoanConstants.REGULAR_RATE_VALUE;
-                    break;
-                case Enumerators.AccountType.Bronze:
-                    rate = LoanConstants.BRONZE_RATE_VALUE;
-                    break;
-                case Enumerators.AccountType.Gold:
-                    rate = LoanConstants.GOLD_RATE_VALUE;
-                    break;
-                case Enumerators.AccountType.Platinum:
-                    rate = LoanConstants.PLATINUM_RATE_VALUE;
-                    break;
-            }
-
-            decimal loan = (loanAmount * (decimal)rate) + loanAmount;
-            return loan;
-        }
-
         private BankAccount CreateBankAccount(string clientFullName)
         {
             return this.bankAccountFactory.Create(clientFullName);
-        }
-
-        private IClient FindClientByIdentificationNumber(string identificationNumber)
-        {
-            IClient client = this.bank.Clients.SingleOrDefault(c => c.IdentificationNumber == identificationNumber);
-
-            return client;
         }
 
         private void IsClienValid(IClient client)

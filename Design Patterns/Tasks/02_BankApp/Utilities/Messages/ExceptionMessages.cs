@@ -17,5 +17,9 @@
         public const string NAME_MIN_LENGHT_ERROR_MESSAGE = "{0} cannot contain fewer than {1} symbols!";
 
         public const string INVALID_IDENTIFICATION_NUMBER = "The identification number is invalid!";
+
+        public const string MIN_DRAW_AMOUT_ERROR_MESSAGE = "The minimum draw amount is {0}!";
+
+        public const string CLIENT_DOES_NOT_HAVE_ENOUGH_MONEY = "You don't have enough money!";
     }
 }

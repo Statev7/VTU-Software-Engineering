@@ -8,6 +8,8 @@
 
         string DrawLoan(string identificationNumber, decimal amount);
 
+        string DrawMoney(string identificationNumber, decimal amount);
+
         string PrintInformationAboutClient(string identificationNumber);
     }
 }

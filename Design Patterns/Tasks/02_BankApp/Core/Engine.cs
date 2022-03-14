@@ -17,6 +17,7 @@
         private const string REGISTER_CLIENT = "registerclient" + COMMAND_SUFFIX;
         private const string DRAW_LOAN = "drawloan" + COMMAND_SUFFIX;
         private const string DEPOSIT_MONEY = "deposit" + COMMAND_SUFFIX;
+        private const string DRAW_MONEY = "draw" + COMMAND_SUFFIX;
         private const string CLIENT_INFORMATION = "information" + COMMAND_SUFFIX;
 
         private readonly Bank bank;
@@ -45,6 +46,7 @@
 
                 if (command == COMMAND_TO_END_READ)
                 {
+                    Console.WriteLine(bank.Balance);
                     Environment.Exit(0);
                 }
 
@@ -62,6 +64,9 @@
                         case DEPOSIT_MONEY:
                             message = bankService.DepositMoney(arguments[0], decimal.Parse(arguments[1]));
                             break;
+                        case DRAW_MONEY:
+                            message = bankService.DrawMoney(arguments[0], decimal.Parse(arguments[1]));
+                            break;
                         case CLIENT_INFORMATION:
                             message = bankService.PrintInformationAboutClient(arguments[0]);
                             break;
@@ -72,10 +77,7 @@
                     this.writer.WriteLine(e.Message);
                 }
 
-                if (message.Length != 0)
-                {
-                    this.writer.WriteLine(message);
-                }
+                if (message.Length != 0) this.writer.WriteLine(message);
             }
         }
     }

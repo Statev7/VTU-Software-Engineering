@@ -1,10 +1,12 @@
 ﻿namespace _02_BankApp.Implementation.Models
 {
+    using System;
     using System.Text;
 
     using _02_BankApp.Enumerators;
     using _02_BankApp.Implementation.Models.Abstraction;
     using _02_BankApp.Utilities.Constants.Models;
+    using _02_BankApp.Utilities.Messages;
 
     public class BankAccount : BaseModel
     {
@@ -28,6 +30,18 @@
         public void DepositMoney(decimal amount)
         {
             this.Balance += amount;
+            this.UpdateData();
+        }
+
+        public void DrawMoney(decimal amount)
+        {
+            decimal totalAmount = (amount * (decimal)this.InterestRate) + amount;
+            if (this.Balance < totalAmount)
+            {
+                throw new ArgumentException(ExceptionMessages.CLIENT_DOES_NOT_HAVE_ENOUGH_MONEY);
+            }
+
+            this.Balance -= totalAmount;
             this.UpdateData();
         }
 

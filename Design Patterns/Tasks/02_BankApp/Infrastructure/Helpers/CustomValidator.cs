@@ -4,8 +4,7 @@
 
     public static class CustomValidator
     {
-        private const int IDENTIFICATION_NUMBER_LENGHT = 10;
-        private static string PATTERN = @$"[0-9]{IDENTIFICATION_NUMBER_LENGHT}";
+        private static string PATTERN = @"[0-9]{10}";
 
         public static bool IsStringLengthLowerTo(string value, int lenght)
         {

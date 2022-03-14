@@ -3,34 +3,33 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using _02_BankApp.Implementation.Contracts;
     using _02_BankApp.Implementation.Models.Abstraction;
     using _02_BankApp.Utilities.Constants.Models;
 
     public class Bank : BaseModel
     {
-        private readonly ICollection<IClient> clients;
+        private readonly ICollection<Client> clients;
 
         public Bank(string name, decimal balance)
             :base()
         {
             this.Name = name;
             this.Balance = balance;
-            this.clients = new HashSet<IClient>();
+            this.clients = new HashSet<Client>();
         }
 
         public string Name { get; private set; }
 
         public decimal Balance { get; private set; }
 
-        public IReadOnlyCollection<IClient> Clients => (IReadOnlyCollection<IClient>)this.clients;
+        public IReadOnlyCollection<Client> Clients => (IReadOnlyCollection<Client>)this.clients;
 
-        public void AddClient(IClient client)
+        public void AddClient(Client client)
         {
             this.clients.Add(client);
         }
 
-        public decimal DrawLoan(IClient client, decimal amount)
+        public decimal DrawLoan(Client client, decimal amount)
         {
             decimal loan = CalculateLoan(client, amount);
             this.Balance -= amount;
@@ -38,14 +37,14 @@
             return loan;
         }
 
-        public IClient FindClientByIdentificationNumber(string identificationNumber)
+        public Client FindClientByIdentificationNumber(string identificationNumber)
         {
-            IClient client = this.Clients.SingleOrDefault(c => c.IdentificationNumber == identificationNumber);
+            Client client = this.Clients.SingleOrDefault(c => c.IdentificationNumber == identificationNumber);
 
             return client;
         }
 
-        private decimal CalculateLoan(IClient client, decimal loanAmount)
+        private decimal CalculateLoan(Client client, decimal loanAmount)
         {
             double rate = 0;
 

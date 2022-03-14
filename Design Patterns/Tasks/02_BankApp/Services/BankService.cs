@@ -2,10 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using _02_BankApp.Factories;
-    using _02_BankApp.Implementation.Contracts;
     using _02_BankApp.Implementation.Models;
     using _02_BankApp.Services.Contracts;
     using _02_BankApp.Utilities.Constants.Models;
@@ -46,7 +44,7 @@
             List<object> clientArguments = 
                 new List<object>() { firstName, lastName, identificationNumber, bankAccount };
 
-            IClient client = this.clientFactory.Create(clientArguments);
+            Client client = this.clientFactory.Create(clientArguments);
             this.bank.AddClient(client);
 
             return OutputMessages.SUCCESSFULY_REGISTERED_CLIENT;
@@ -54,7 +52,7 @@
 
         public string DepositMoney(string identificationNumber, decimal amount)
         {
-            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
+            Client client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             if (amount < BankConstants.MINIMUM_AMOUNT_DEPOSIT)
@@ -73,7 +71,7 @@
 
         public string DrawMoney(string identificationNumber, decimal amount)
         {
-            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
+            Client client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             if (amount < BankConstants.MINIMUM_AMOUNT_DRAW)
@@ -92,7 +90,7 @@
 
         public string DrawLoan(string identificationNumber, decimal loanAmount)
         {
-            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
+            Client client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             if (loanAmount > this.bank.Balance)
@@ -117,7 +115,7 @@
 
         public string PrintInformationAboutClient(string identificationNumber)
         {
-            IClient client = this.bank.FindClientByIdentificationNumber(identificationNumber);
+            Client client = this.bank.FindClientByIdentificationNumber(identificationNumber);
             this.IsClienValid(client);
 
             string result = client.ToString();
@@ -130,7 +128,7 @@
             return this.bankAccountFactory.Create(clientFullName);
         }
 
-        private void IsClienValid(IClient client)
+        private void IsClienValid(Client client)
         {
             if (client == null)
             {

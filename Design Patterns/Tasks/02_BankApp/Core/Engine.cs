@@ -46,7 +46,6 @@
 
                 if (command == COMMAND_TO_END_READ)
                 {
-                    Console.WriteLine(bank.Balance);
                     Environment.Exit(0);
                 }
 

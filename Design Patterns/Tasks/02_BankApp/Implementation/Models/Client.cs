@@ -4,13 +4,12 @@
     using System.Collections.Generic;
     using System.Text;
 
-    using _02_BankApp.Implementation.Contracts;
     using _02_BankApp.Implementation.Models.Abstraction;
     using _02_BankApp.Infrastructure.Helpers;
     using _02_BankApp.Utilities.Constants.Models;
     using _02_BankApp.Utilities.Messages;
 
-    public class Client : BaseModel, IClient
+    public class Client : BaseModel
     {
         private string firstName;
         private string lastName;

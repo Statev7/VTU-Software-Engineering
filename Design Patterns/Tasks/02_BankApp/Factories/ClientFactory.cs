@@ -2,19 +2,18 @@
 {
     using System.Collections.Generic;
 
-    using _02_BankApp.Implementation.Contracts;
     using _02_BankApp.Implementation.Models;
 
     public class ClientFactory
     {
-        public IClient Create(List<object> arguments)
+        public Client Create(List<object> arguments)
         {
             string firstName = arguments[0].ToString();
             string lastName = arguments[1].ToString();
             string identificationNumber = arguments[2].ToString();
             BankAccount bankAccount = arguments[3] as BankAccount;
 
-            IClient client = new Client(firstName, lastName, identificationNumber, bankAccount);
+            Client client = new Client(firstName, lastName, identificationNumber, bankAccount);
             return client;
         }
     }

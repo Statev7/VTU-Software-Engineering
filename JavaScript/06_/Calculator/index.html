@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Калкулатор за бакшиши</h2>
+        <p>Каква е сума е вашата сметка?</p>
+        <input id="bill" type="number" placeholder="Сума"><span>лв</span>
+        <p>Как оценявате вашия предстой в ресторанта?</p>
+
+        <select id="options">
+            <option">Изберете опция</option>
+            <option value="30">30% - Отлично</option>
+            <option value="20">20% - Добре</option>
+            <option value="10">10% - Задоволително</option>
+        </select>
+
+        <p>Колко човека си си поделяте сметката?</p>
+        <input id="peopleCount" type="number">
+        <p>
+            <button id="calculateBtn" type="submit" onclick="calculate()" >Калкулирай</button>
+        </p>
+
+        <p id="errorMessage"></p>
+
+        <script src="main.js"></script>
+    </div>
+</body>
+</html>

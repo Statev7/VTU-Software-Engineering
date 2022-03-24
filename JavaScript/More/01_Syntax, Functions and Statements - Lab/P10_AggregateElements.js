@@ -42,5 +42,3 @@ function solve(arr){
     console.log(inverseSum);
     console.log(concat);
 }
-
-solve([1, 2, 3]);

@@ -21,18 +21,18 @@ function calculate(){
 
 function validateDate(billValue, peopleValue){
 
+    const minPeopleValue = 1;
+    const minBillValue = 0;
     let errorMessage = '';
 
     if(!billValue && !peopleValue){
-        return errorMessage = "Попълнете всички полета!";
+       errorMessage = "Попълнете всички полета!";
     }
-
-    if(!billValue || Number(billValue) <= 0){
-        return errorMessage = "Сметката трябва да бъде поне 1лв!";
+    else if(!billValue || Number(billValue) <= minBillValue){
+        errorMessage = "Сметката трябва да бъде поне 1лв!";
     }
-
-    if(!peopleValue || Number(peopleValue) < 1){
-        return errorMessage = "Трябва да има поне един човек!";
+    else if(!peopleValue || Number(peopleValue) < minPeopleValue){
+        errorMessage = "Трябва да има поне един човек!";
     }
 
     return errorMessage;
